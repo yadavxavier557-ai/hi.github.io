@@ -1,0 +1,1255 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarvatta Cafe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6B4423;
+            --secondary: #E8C07D;
+            --light: #F9F1E7;
+            --dark: #333333;
+            --accent: #B85C38;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .hero {
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+        }
+
+        .menu-category {
+            margin-bottom: 50px;
+        }
+
+        .menu-category h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-item-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .menu-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .menu-item:hover .menu-item-img img {
+            transform: scale(1.1);
+        }
+
+        .menu-item-content {
+            padding: 20px;
+        }
+
+        .menu-item-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .menu-item-title h4 {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .menu-item-price {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .menu-item-desc {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item-overlay i {
+            color: white;
+            font-size: 2rem;
+        }
+
+        .reviews {
+            background: #f8f8f8;
+        }
+
+        .review-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .review-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 20px;
+        }
+
+        .review-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .review-author {
+            font-weight: 600;
+        }
+
+        .review-date {
+            color: #999;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        .review-rating {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 15px;
+        }
+
+        .map-container {
+            height: 400px;
+            margin-top: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .menu-tab {
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid var(--primary);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .menu-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .menu-tab:hover:not(.active) {
+            background: rgba(107, 68, 35, 0.1);
+        }
+
+        .menu-section {
+            display: none;
+        }
+
+        .menu-section.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                margin-bottom: 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            nav.active {
+                display: block;
+            }
+        }
+
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">Sarvatta</div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="fade-in">Welcome to Sarvatta Cafe</h1>
+            <p class="fade-in delay-1">Experience the finest flavors in a cozy ambiance</p>
+            <a href="#menu" class="btn fade-in delay-2">Explore Our Menu</a>
+        </div>
+    </section>
+
+    <section id="menu" class="menu">
+        <div class="container">
+            <h2 class="section-title slide-up">Our Menu</h2>
+            
+            <div class="menu-tabs slide-up delay-1">
+                <div class="menu-tab active" data-tab="light-food">Light Food</div>
+                <div class="menu-tab" data-tab="pizza">Pizza</div>
+                <div class="menu-tab" data-tab="soup">Soup</div>
+                <div class="menu-tab" data-tab="pasta">Pasta</div>
+                <div class="menu-tab" data-tab="starters">Starters</div>
+            </div>
+
+            <div id="light-food" class="menu-section active">
+                <div class="menu-category slide-up delay-1">
+                    <h3>Light Food</h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://images.lifestyleasia.com/wp-content/uploads/sites/7/2022/02/01171421/YFL-Pav-Bhaji-2.jpg?tr=w-1600" alt="Pav Bhaji dish">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Pav Bhaji</h4>
+                                    <span class="menu-item-price">90/-</span>
+                                </div>
+                                <p class="menu-item-desc">Delicious mashed vegetables served with buttered bread rolls</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://amritsr.com/wp-content/uploads/2021/04/cholle-bhature.jpeg" alt="Chole Bhature - A delicious Indian dish">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Chola Bhatoora</h4>
+                                    <span class="menu-item-price">90/-</span>
+                                </div>
+                                <p class="menu-item-desc">Spicy chickpea curry served with fluffy fried bread</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="pizza" class="menu-section">
+                <div class="menu-category">
+                    <h3>Pizza</h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Capsicum Pizza">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Capsicum Pizza</h4>
+                                    <span class="menu-item-price">140/-</span>
+                                </div>
+                                <p class="menu-item-desc">Fresh capsicum toppings on a delicious tomato base</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://images.unsplash.com/photo-1574126154517-d1e0d89ef734?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tomato Pizza">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Tomato Pizza</h4>
+                                    <span class="menu-item-price">110/-</span>
+                                </div>
+                                <p class="menu-item-desc">Juicy tomato slices with special herbs and cheese</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Onion Pizza">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Onion Pizza</h4>
+                                    <span class="menu-item-price">120/-</span>
+                                </div>
+                                <p class="menu-item-desc">Caramelized onions with a perfect blend of cheese</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://images.unsplash.com/photo-1552539618-7eec9b4d1796?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Corn & Cheese Pizza">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Corn & Cheese Pizza</h4>
+                                    <span class="menu-item-price">130/-</span>
+                                </div>
+                                <p class="menu-item-desc">Sweet corn with extra cheese topping</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://images.unsplash.com/photo-1594007654729-407eedc4be65?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Veggie Lover Pizza">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Veggie Lover Pizza</h4>
+                                    <span class="menu-item-price">140/-</span>
+                                </div>
+                                <p class="menu-item-desc">Loaded with assorted fresh vegetables</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Paneer & Onion Pizza">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Paneer & Onion Pizza</h4>
+                                    <span class="menu-item-price">130/-</span>
+                                </div>
+                                <p class="menu-item-desc">Indian cottage cheese with onions</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mushroom Pizza">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Mushroom Pizza</h4>
+                                    <span class="menu-item-price">140/-</span>
+                                </div>
+                                <p class="menu-item-desc">Fresh mushrooms with garlic sauce</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://images.unsplash.com/photo-1601924582970-9238bcb495d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Farm House Pizza">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Farm House Pizza</h4>
+                                    <span class="menu-item-price">160/-</span>
+                                </div>
+                                <p class="menu-item-desc">Country style pizza with fresh farm produce</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Country Special Pizza">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Country Special Pizza</h4>
+                                    <span class="menu-item-price">120/-</span>
+                                </div>
+                                <p class="menu-item-desc">Our signature pizza with a rustic touch</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://images.unsplash.com/photo-1552539618-7eec9b4d1796?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Paneer Tikka Pizza">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Paneer Tikka Pizza</h4>
+                                    <span class="menu-item-price">150/-</span>
+                                </div>
+                                <p class="menu-item-desc">Tandoori style paneer cubes on pizza</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://www.recipesyumz.com/wp-content/uploads/2025/08/abde0815_90906_close_up_kiddies_pizzas_fresh_from_the_oven_go_5061bd3f-2fac-4791-ac11-56de99d63ec7_0.webp" alt="Kiddies Pizzas Fresh from the Oven">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Kids Delight Pizza</h4>
+                                    <span class="menu-item-price">160/-</span>
+                                </div>
+                                <p class="menu-item-desc">Fun pizza designed for kids with smiley faces</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Paneer Pizza">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Paneer Pizza</h4>
+                                    <span class="menu-item-price">160/-</span>
+                                </div>
+                                <p class="menu-item-desc">Double layer of paneer with spices</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Veggie Paradise Pizza">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Veggie Paradise Pizza</h4>
+                                    <span class="menu-item-price">250/-</span>
+                                </div>
+                                <p class="menu-item-desc">Gourmet pizza with exotic vegetables</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cheese Corn Pizza">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Cheese Corn Pizza</h4>
+                                    <span class="menu-item-price">150</span>
+                                </div>
+                                <p class="menu-item-desc">Extra cheese with sweet corn</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mushroom Cheese Pizza">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Mushroom Cheese Pizza</h4>
+                                    <span class="menu-item-price">160/</span>
+                                </div>
+                                <p class="menu-item-desc">Mushrooms with double layer of cheese</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Paneer Cheese Pizza">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Paneer Cheese Pizza</h4>
+                                    <span class="menu-item-price">160/</span>
+                                </div>
+                                <p class="menu-item-desc">Paneer cubes with extra cheese</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://5.imimg.com/data5/SELLER/Default/2022/9/YJ/IK/PG/160634129/pizza-1000x1000.jpg" alt="Pizza Image">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Cheese Burst Pizza</h4>
+                                    <span class="menu-item-price">250/</span>
+                                </div>
+                                <p class="menu-item-desc">Pizza with molten cheese center</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="soup" class="menu-section">
+                <div class="menu-category">
+                    <h3>Soup</h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://healthylivingjames.co.uk/wp-content/uploads/2025/03/Chicken-and-Sweetcorn-Soup-Square.jpg" alt="Chicken and Sweetcorn Soup">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Sweet Corn Soup</h4>
+                                    <span class="menu-item-price">90/-</span>
+                                </div>
+                                <p class="menu-item-desc">Creamy sweet corn soup with vegetable stock</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="pasta" class="menu-section">
+                <div class="menu-category">
+                    <h3>Pasta</h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="White Pasta">
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>White Pasta</h4>
+                                    <span class="menu-item-price">140/-</span>
+                                </div>
+                                <p class="menu-item-desc">Creamy white sauce pasta with herbs</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://www.yummytummyaarthi.com/wp-content/uploads/2022/11/red-sauce-pasta-1.jpg" alt="Red Sauce Pasta">
+
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Red Pasta</h4>
+                                    <span class="menu-item-price">110/-</span>
+                                </div>
+                                <p class="menu-item-desc">Classic tomato based pasta with garlic</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="starters" class="menu-section">
+                <div class="menu-category">
+                    <h3>Starters</h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://images.slurrp.com/prod/recipe_images/transcribe/snack/Crispy-paneer-pakora.webp?impolicy=slurrp-20210601&width=1200&height=675" alt="Crispy Paneer Pakora" />
+
+                       </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Crispy Paneer</h4>
+                                    <span class="menu-item-price">100/-</span>
+                                </div>
+                                <p class="menu-item-desc">Deep fried paneer cubes with spices</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://rakskitchen.net/wp-content/uploads/2022/01/crispy-corn-restaurant-style.jpg" alt="Crispy Corn Restaurant Style" />
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Crispy Corn</h4>
+                                    <span class="menu-item-price">120/-</span>
+                                </div>
+                                <p class="menu-item-desc">Fried corn kernels with seasonings</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://www.puvi.co/uploaded_images/1625409012.jpg" alt="Uploaded Image" />
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Crispy Corn Chilly</h4>
+                                    <span class="menu-item-price">80/-</span>
+                                </div>
+                                <p class="menu-item-desc">Spicy corn with green chilies</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img">
+                                <img src="https://storage.googleapis.com/cscom-2019.appspot.com/uploads/2018/08/Cabbage-Manchurian_960x540.jpg?alt=media" alt="Cabbage Manchurian" />
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">
+                                    <h4>Veg Manchurian</h4>
+                                    <span class="menu-item-price">150/</span>
+                                </div>
+                                <p class="menu-item-desc">Fried vegetable balls in tangy sauce</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title slide-up">Cafe Ambiance</h2>
+            <div class="gallery slide-up delay-1">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cafe Interior">
+                    <div class="gallery-item-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Outdoor Seating">
+                    <div class="gallery-item-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Coffee Preparation">
+                    <div class="gallery-item-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Barista at Work">
+                    <div class="gallery-item-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1504198266287-1659872e6590?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cozy Corner">
+                    <div class="gallery-item-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cafe Lighting">
+                    <div class="gallery-item-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2 class="section-title slide-up">Customer Reviews</h2>
+            <div class="review-card slide-up delay-1">
+                <div class="review-header">
+                    <div class="review-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Customer Avatar">
+                    </div>
+                    <div>
+                        <div class="review-author">Priya Sharma</div>
+                        <div class="review-date">January 15, 2024</div>
+                    </div>
+                </div>
+                <div class="review-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>"The ambiance of Sarvatta Cafe is simply amazing. I loved their Farm House Pizza - it was loaded with fresh vegetables and the crust was perfect. Will definitely come back!"</p>
+            </div>
+            <div class="review-card slide-up delay-2">
+                <div class="review-header">
+                    <div class="review-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Customer Avatar">
+                    </div>
+                    <div>
+                        <div class="review-author">Rahul Verma</div>
+                        <div class="review-date">December 28, 2023</div>
+                    </div>
+                </div>
+                <div class="review-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>"Best cafe in town! Their Paneer Tikka Pizza is to die for. The service was excellent and the staff was very friendly. Highly recommend this place for a cozy evening."</p>
+            </div>
+            <div class="review-card slide-up delay-3">
+                <div class="review-header">
+                    <div class="review-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Customer Avatar">
+                    </div>
+                    <div>
+                        <div class="review-author">Ananya Patel</div>
+                        <div class="review-date">December 10, 2023</div>
+                    </div>
+                </div>
+                <div class="review-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p>"Visited for breakfast and had their Pav Bhaji - it was delicious! The cafe has a very relaxed vibe, perfect for catching up with friends. Only wish the portion size was a bit bigger."</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title slide-up">Contact Us</h2>
+            <div class="contact-info slide-up delay-1">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Location</h3>
+                    <p>123 Food Street, City Center<br>New Delhi, India</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Phone</h3>
+                    <p>+91 9876543210</p>
+                    <p>+91 1234567890</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p>info@sarvattacafe.com</p>
+                    <p>reservations@sarvattacafe.com</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Opening Hours</h3>
+                    <p>Monday - Friday: 10am - 11pm</p>
+                    <p>Saturday - Sunday: 9am - 12am</p>
+                </div>
+            </div>
+            <div class="map-container slide-up delay-2">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.082349324528!2d77.20654781508254!3d28.62848198242248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x52c2b7494e204dce!2sNew%20Delhi%2C%20Delhi%2C%20India!5e0!3m2!1sen!2sus!4v1628688888888!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>About Sarvatta</h3>
+                    <p>Sarvatta Cafe is a cozy place where food meets comfort. We serve delicious food with love and care in a warm, inviting atmosphere.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Menu Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#light-food">Light Food</a></li>
+                        <li><a href="#pizza">Pizza</a></li>
+                        <li><a href="#soup">Soup</a></li>
+                        <li><a href="#pasta">Pasta</a></li>
+                        <li><a href="#starters">Starters</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for special offers and updates.</p>
+                    <form>
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Sarvatta Cafe. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = nav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu if open
+                if (nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+
+        // Menu tabs functionality
+        const menuTabs = document.querySelectorAll('.menu-tab');
+        const menuSections = document.querySelectorAll('.menu-section');
+
+        menuTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and sections
+                menuTabs.forEach(t => t.classList.remove('active'));
+                menuSections.forEach(s => s.classList.remove('active'));
+
+                // Add active class to clicked tab and corresponding section
+                tab.classList.add('active');
+                const sectionId = tab.getAttribute('data-tab');
+                document.getElementById(sectionId).classList.add('active');
+
+                // Scroll to menu section
+                document.getElementById('menu').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.slide-up, .fade-in');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial state for animated elements
+        document.querySelectorAll('.slide-up').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transition = 'opacity 1s ease';
+        });
+
+        // Trigger animations when page loads
+        window.addEventListener('load', animateOnScroll);
+        
+        // Trigger animations on scroll
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>
+
+
+                            
