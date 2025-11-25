@@ -1,0 +1,1255 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarvatta Cafe - Premium Coffee & Dining Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    <style>
+        :root {
+            --primary: #e67e22;
+            --secondary: #2c3e50;
+            --accent: #f39c12;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --coffee: #6f4e37;
+            --cream: #fdf6e3;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--cream);
+            color: #333;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            padding: 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 1rem;
+            background: rgba(44, 62, 80, 0.95);
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo i {
+            color: var(--accent);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            color: white;
+            padding: 2rem;
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+            font-weight: 300;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover:before {
+            left: 0;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Menu Section */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            color: var(--secondary);
+            position: relative;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 5px;
+            background: var(--primary);
+            border-radius: 5px;
+        }
+        
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        
+        .menu-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .menu-img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .menu-item:hover .menu-img {
+            transform: scale(1.05);
+        }
+        
+        .menu-content {
+            padding: 1.8rem;
+        }
+        
+        .menu-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+        
+        .menu-title h3 {
+            font-size: 1.4rem;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+        
+        .price {
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 1.4rem;
+            background: rgba(230, 126, 34, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+        
+        .menu-item p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+        
+        .add-to-cart {
+            background: var(--secondary);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: block;
+            margin-top: 1rem;
+            width: 100%;
+        }
+        
+        .add-to-cart:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Reviews Section */
+        .reviews {
+            background: linear-gradient(135deg, #f8f8f8 0%, #fff 100%);
+            border-radius: 20px;
+            padding: 4rem;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reviews:before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            background: var(--primary);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+        
+        .reviews:after {
+            content: "";
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+        
+        .reviews-container {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) transparent;
+        }
+        
+        .review-card {
+            min-width: 320px;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stars {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .reviewer {
+            display: flex;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+        
+        .reviewer img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+            border: 3px solid var(--primary);
+        }
+        
+        /* About Section */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            height: 500px;
+            position: relative;
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        .about-content h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+        
+        .about-content p {
+            margin-bottom: 1.8rem;
+            line-height: 1.7;
+            color: #555;
+            font-size: 1.1rem;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .feature-item i {
+            width: 50px;
+            height: 50px;
+            background: rgba(230, 126, 34, 0.1);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        
+        /* Gallery Section */
+        .gallery {
+            position: relative;
+            padding-bottom: 4rem;
+        }
+        
+        .swiper {
+            width: 100%;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .swiper-slide {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .ambiance-text {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            color: white;
+            background: rgba(0,0,0,0.6);
+            padding: 15px 25px;
+            border-radius: 10px;
+            max-width: 70%;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: var(--primary) !important;
+        }
+        
+        .swiper-button-next, .swiper-button-prev {
+            color: var(--primary) !important;
+            width: 60px !important;
+            height: 60px !important;
+            background: rgba(255,255,255,0.8);
+            border-radius: 50%;
+        }
+        
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 1.5rem !important;
+            font-weight: bold;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(to right, var(--secondary), var(--dark));
+            color: white;
+            padding: 5rem 2rem;
+            position: relative;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo i {
+            color: var(--accent);
+        }
+        
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+        
+        .footer-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.8rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            align-items: flex-start;
+        }
+        
+        .contact-item i {
+            color: var(--accent);
+            margin-top: 5px;
+            font-size: 1.2rem;
+        }
+        
+        .hours {
+            margin: 1.5rem 0;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .hours p {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.8;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .about {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .swiper {
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                flex-direction: column;
+                background: var(--secondary);
+                width: 100%;
+                text-align: center;
+                padding: 2rem 0;
+                transition: all 0.4s ease;
+                z-index: 99;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.4rem;
+            }
+            
+            .section-title {
+                font-size: 2.3rem;
+            }
+            
+            .menu-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .reviews {
+                padding: 2rem;
+            }
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <div class="logo">
+                <i class="fas fa-mug-hot"></i>
+                <span>Sarvatta</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#menu">Menu</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#about">About Us</a>
+                <a href="#gallery">Gallery</a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Sarvatta Cafe</h1>
+            <p>Where every cup tells a story</p>
+            <a href="#menu" class="btn">Discover Our Menu</a>
+        </div>
+    </section>
+
+    <section id="menu">
+        <h2 class="section-title">Our Premium Menu</h2>
+        <div class="menu-container">
+            <!-- Pizza Items -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="menu-img" alt="Capsicum Pizza">
+                <div class="menu-content">
+                    <div class="menu-title">
+                        <h3>Capsicum Pizza</h3>
+                        <div class="price">₹140/-</div>
+                    </div>
+                    <p>Fresh capsicum on a delicious tomato base with mozzarella cheese</p>
+                    <button class="add-to-cart">Add to Order</button>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1981&q=80" class="menu-img" alt="Tomato Pizza">
+                <div class="menu-content">
+                    <div class="menu-title">
+                        <h3>Tomato Pizza</h3>
+                        <div class="price">₹110/-</div>
+                    </div>
+                    <p>Juicy tomatoes with Italian herbs and special cheese blend</p>
+                    <button class="add-to-cart">Add to Order</button>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1601924582972-6e67b8e65044?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1978&q=80" class="menu-img" alt="Onion Pizza">
+                <div class="menu-content">
+                    <div class="menu-title">
+                        <h3>Onion Pizza</h3>
+                        <div class="price">₹120/-</div>
+                    </div>
+                    <p>Caramelized onions on a cheesy delight with oregano seasoning</p>
+                    <button class="add-to-cart">Add to Order</button>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1542282811-943ef1a977c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="menu-img" alt="Corn & Cheese Pizza">
+                <div class="menu-content">
+                    <div class="menu-title">
+                        <h3>Corn & Cheese Pizza</h3>
+                        <div class="price">₹130/-</div>
+                    </div>
+                    <p>Sweet corn with extra cheese topping on thin crust base</p>
+                    <button class="add-to-cart">Add to Order</button>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1613564834361-9436948817d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1943&q=80" class="menu-img" alt="Veggie Lower Pizza">
+                <div class="menu-content">
+                    <div class="menu-title">
+                        <h3>Veggie Lower Pizza</h3>
+                        <div class="price">₹140/-</div>
+                    </div>
+                    <p>Loaded with garden fresh vegetables and special sauce</p>
+                    <button class="add-to-cart">Add to Order</button>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1506354666786-959d6d497f1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="menu-img" alt="Paneer & Onion Pizza">
+                <div class="menu-content">
+                    <div class="menu-title">
+                        <h3>Paneer & Onion Pizza</h3>
+                        <div class="price">₹130/-</div>
+                    </div>
+                    <p>Cottage cheese with caramelized onions and signature spice mix</p>
+                    <button class="add-to-cart">Add to Order</button>
+                </div>
+            </div>
+            
+            <!-- Additional Pizza Items -->
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1574126154517-d1e0d89ef734?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" class="menu-img" alt="Mushroom Pizza">
+                <div class="menu-content">
+                    <div class="menu-title">
+                        <h3>Mushroom Pizza</h3>
+                        <div class="price">₹140/-</div>
+                    </div>
+                    <p>Sautéed mushrooms with garlic and herb-infused cheese</p>
+                    <button class="add-to-cart">Add to Order</button>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1555072956-7758afb20e8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" class="menu-img" alt="Farm House Pizza">
+                <div class="menu-content">
+                    <div class="menu-title">
+                        <h3>Farm House Pizza</h3>
+                        <div class="price">₹160/-</div>
+                    </div>
+                    <p>Fresh farm vegetables with double cheese and tangy sauce</p>
+                    <button class="add-to-cart">Add to Order</button>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1581873372796-635b67ca6b21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="menu-img" alt="Country Special Pizza">
+                <div class="menu-content">
+                    <div class="menu-title">
+                        <h3>Country Special Pizza</h3>
+                        <div class="price">₹120/-</div>
+                    </div>
+                    <p>Traditional recipe with locally sourced ingredients</p>
+                    <button class="add-to-cart">Add to Order</button>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1780&q=80" class="menu-img" alt="Paneer Bhurji Pizza">
+                <div class="menu-content">
+                    <div class="menu-title">
+                        <h3>Paneer Bhurji Pizza</h3>
+                        <div class="price">₹150/-</div>
+                    </div>
+                    <p>Spiced scrambled paneer with onion and capsicum topping</p>
+                    <button class="add-to-cart">Add to Order</button>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="menu-img" alt="Kids Delight Pizza">
+                <div class="menu-content">
+                    <div class="menu-title">
+                        <h3>Kids Delight Pizza</h3>
+                        <div class="price">₹160/-</div>
+                    </div>
+                    <p>Cheesy pizza with kid-friendly toppings and smiley faces</p>
+                    <button class="add-to-cart">Add to Order</button>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1601924994987-69e26d50dc26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" class="menu-img" alt="Paneer Tikka Pizza">
+                <div class="menu-content">
+                    <div class="menu-title">
+                        <h3>Paneer Tikka Pizza</h3>
+                        <div class="price">₹160/-</div>
+                    </div>
+                    <p>Tandoori paneer tikka with onions and capsicum on pizza base</p>
+                    <button class="add-to-cart">Add to Order</button>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1601924582972-6e67b8e65044?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1978&q=80" class="menu-img" alt="Veggie Paradise Pizza">
+                <div class="menu-content">
+                    <div class="menu-title">
+                        <h3>Veggie Paradise Pizza</h3>
+                        <div class="price">₹250/-</div>
+                    </div>
+                    <p>Gourmet pizza with exotic vegetables and premium cheese</p>
+                    <button class="add-to-cart">Add to Order</button>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80" class="menu-img" alt="Cheese Corn Pizza">
+                <div class="menu-content">
+                    <div class="menu-title">
+                        <h3>Cheese Corn Pizza</h3>
+                        <div class="price">₹170/-</div>
+                    </div>
+                    <p>Sweet corn with triple cheese blend on thick crust</p>
+                    <button class="add-to-cart">Add to Order</button>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="menu-img" alt="Mushroom Cheese Pizza">
+                <div class="menu-content">
+                    <div class="menu-title">
+                        <h3>Mushroom Cheese Pizza</h3>
+                        <div class="price">₹150/-</div>
+                    </div>
+                    <p>Double mushrooms with extra cheese and garlic butter</p>
+                    <button class="add-to-cart">Add to Order</button>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1593504049359-74330189a345?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" class="menu-img" alt="Paneer Cheese Pizza">
+                <div class="menu-content">
+                    <div class="menu-title">
+                        <h3>Paneer Cheese Pizza</h3>
+                        <div class="price">₹140/-</div>
+                    </div>
+                    <p>Cubes of paneer with melted cheese on Italian crust</p>
+                    <button class="add-to-cart">Add to Order</button>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1981&q=80" class="menu-img" alt="Cheese Burst Pizza">
+                <div class="menu-content">
+                    <div class="menu-title">
+                        <h3>Cheese Burst Pizza</h3>
+                        <div class="price">₹160/-</div>
+                    </div>
+                    <p>Double layer crust filled with molten cheese</p>
+                    <button class="add-to-cart">Add to Order</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews">
+        <h2 class="section-title">Customer Reviews</h2>
+        <div class="reviews">
+            <div class="reviews-container">
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"The Farm House Pizza was absolutely delicious! The perfect blend of vegetables and cheese. Sarvatta Cafe has become my go-to place for weekend dinners."</p>
+                    <div class="reviewer">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Reviewer">
+                        <div>
+                            <h4>Priya Sharma</h4>
+                            <p>Food Blogger</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>"Amazing ambiance and even better food. The Veggie Paradise Pizza is worth every penny! The staff is extremely courteous and attentive."</p>
+                    <div class="reviewer">
+                        <img src="https://randomuser.me/api/portraits/men/43.jpg" alt="Reviewer">
+                        <div>
+                            <h4>Rahul Mehta</h4>
+                            <p>Regular Customer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Best cafe in town! Their Cheese Corn Pizza is my all-time favorite. The coffee is exceptional too. Highly recommended for family dinners and dates!"</p>
+                    <div class="reviewer">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Reviewer">
+                        <div>
+                            <h4>Ananya Patel</h4>
+                            <p>Food Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"The Paneer Bhurji Pizza is a game changer! Perfectly spiced and cooked to perfection. The cozy atmosphere makes it perfect for work meetings too."</p>
+                    <div class="reviewer">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Reviewer">
+                        <div>
+                            <h4>Vikram Singh</h4>
+                            <p>Business Executive</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">Our Story</h2>
+        <div class="about">
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Cafe Interior">
+            </div>
+            <div class="about-content">
+                <h3>Discover Sarvatta</h3>
+                <p>Founded in 2010, Sarvatta Cafe began as a small coffee shop with big dreams. Our founder, Chef Rajiv Kapoor, envisioned a space where quality food, exceptional coffee, and warm hospitality would create memorable experiences for every guest.</p>
+                <p>Today, we've grown into a beloved neighborhood destination known for our artisanal pizzas, specialty coffees, and inviting atmosphere. Every dish we serve is crafted with locally sourced ingredients and prepared with passion.</p>
+                
+                <div class="features">
+                    <div class="feature-item">
+                        <i class="fas fa-seedling"></i>
+                        <div>
+                            <h4>Fresh Ingredients</h4>
+                            <p>Locally sourced produce daily</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-coffee"></i>
+                        <div>
+                            <h4>Artisan Coffee</h4>
+                            <p>Premium beans roasted in-house</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-utensils"></i>
+                        <div>
+                            <h4>Handcrafted Pizzas</h4>
+                            <p>Authentic recipes with modern twist</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <h4>Community Focus</h4>
+                            <p>Supporting local artists & farmers</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#gallery" class="btn">Experience Our Ambiance</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+        <h2 class="section-title">Cafe Ambiance</h2>
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1463797221720-6b5e72241e1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Cafe Interior">
+                    <div class="ambiance-text">Our Cozy Dining Space</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Coffee Making">
+                    <div class="ambiance-text">Artisan Coffee Station</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1559925393-8be0ecf7a11e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Outdoor Seating">
+                    <div class="ambiance-text">Beautiful Garden Seating</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1481833761820-0509d3217039?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Pizza Preparation">
+                    <div class="ambiance-text">Open Kitchen Experience</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Cafe Counter">
+                    <div class="ambiance-text">Our Welcoming Counter Area</div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <i class="fas fa-mug-hot"></i>
+                    <span>Sarvatta Cafe</span>
+                </div>
+                <p>Where every meal is an experience and every guest is family. We take pride in serving authentic flavors with a modern touch in a warm, inviting atmosphere.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links-container">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="footer-title">Contact Us</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>123 Food Street, Mumbai, India</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p>+91 9876543210</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>contact@sarvattacafe.com</p>
+                </div>
+                
+                <div class="hours">
+                    <h4>Opening Hours</h4>
+                    <p><span>Monday-Friday:</span> <span>8:00 AM - 11:00 PM</span></p>
+                    <p><span>Saturday:</span> <span>9:00 AM - 12:00 AM</span></p>
+                    <p><span>Sunday:</span> <span>9:00 AM - 10:00 PM</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Sarvatta Cafe. All rights reserved. Crafted with <i class="fas fa-heart" style="color: var(--accent);"></i> for food lovers.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+            
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Initialize Swiper
+            const swiper = new Swiper('.swiper', {
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Add to cart animation
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemName = this.closest('.menu-item').querySelector('h3').textContent;
+                    this.innerHTML = '<i class="fas fa-check"></i> Added';
+                    this.style.backgroundColor = '#2ecc71';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = 'Add to Order';
+                        this.style.backgroundColor = '';
+                    }, 2000);
+                    
+                    // Animation effect
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 100);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
